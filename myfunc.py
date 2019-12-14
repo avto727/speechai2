@@ -66,7 +66,7 @@ def findyoutube(x):
     zz3=[]
     for qq in zz2: zz3.append(qq)
     s=zz3[0]
-    s='''<iframe width="900" height="550" src="https://www.youtube.com/embed/'''+s+'''?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'''
+    s='https://www.youtube.com/watch?v='+s+'?autoplay=1'
     return s
 
 def mysearch(z):
@@ -89,28 +89,6 @@ def mysearch(z):
                 mas2.append(z[0])
     return mas2
 
-def gettext(url):
-    s=url
-    txt=''
-    try:
-        doc = urllib.request.urlopen(s).read().decode('utf-8',errors='ignore')
-    except:
-        response = requests.get(s)
-        doc=response.content.decode('utf-8',errors='ignore')
-    h = html2text.HTML2Text()
-    h.ignore_links = True
-    h.body_width = False
-    h.ignore_images = True
-    doc = h.handle(doc)
-    summa=""       
-    ss=doc.split("\n")
-    for xx in ss:
-        xx=xx.strip()
-        if((len(xx)>50) and (xx.startswith('&')==False) and not('то стабильная версия' in xx) and (xx.startswith('>')==False) and (xx.startswith('*')==False) and (xx.startswith('\\')==False) and (xx.startswith('<')==False) and (xx.startswith('(')==False) and (xx.startswith('#')==False) and (xx.endswith('.') or xx.endswith('?') or xx.endswith('!') or xx.endswith(';'))):
-            summa = summa + xx + "\n \n"  
-    if(len(summa)>200):
-        txt=summa
-    return txt
 
 
 

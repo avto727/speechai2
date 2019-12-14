@@ -185,14 +185,6 @@ class W(QMainWindow):
         self.browser.setHtml(htmlresult, QtCore.QUrl("file://"));
         self.browser.show()
 
-     # Добавление в html чат фразы ассистента
-    def addvideotohtml(self, code):
-        global htmltemplate
-        hcode='<div style="text-align: center; margin: 15px auto;">'+code+'</div>'
-        result=htmltemplate.replace('%code%',hcode)
-        self.browser2.setHtml(result, QtCore.QUrl("file://"));
-        self.browser2.show()
-
     # Добавление в html чат фразы пользователя
     def addyouphrasetohtml(self, phrase):
         global htmltemplate
@@ -230,17 +222,11 @@ class W(QMainWindow):
         elif('запусти' in vp):
             ot=myfunc.zapusti(vp)
         elif(((vp.find("youtube")!=-1) or (vp.find("ютюб")!=-1)  or (vp.find("ютуб")!=-1) or (vp.find("you tube")!=-1)) and (vp.find("смотреть")!=-1)):
-            self.addvideotohtml(myfunc.findyoutube(vp))
+            self.browser2.load(QtCore.QUrl(myfunc.findyoutube(vp)))
             ot='Вот видео.'
         elif((vp.find("слушать")!=-1) and (vp.find("песн")!=-1)):
-            self.addvideotohtml(myfunc.findyoutube(vp))
+            self.browser2.load(QtCore.QUrl(myfunc.findyoutube(vp)))
             ot='Вот песня.'
-        elif(((vp.find("найти")!=-1) or (vp.find("найди")!=-1)) and (vp.find("статью")!=-1)):
-            zapros=myfunc.cleanphrase(vp,['найти','найди','статью','про','про то', 'о том'])
-            q=myfunc.mysearch(zapros)
-            txt=myfunc.gettext(q[0])
-            self.addvideotohtml('<div style="text-align: left; white-space: pre;white-space: pre-wrap;white-space: pre-line;white-space: -moz-pre-wrap !important;white-space: -hp-pre-wrap;white-space: -o-pre-wrap;white-space: -pre-wrap;word-wrap: break-word;">'+txt+'</div>')
-            ot='Вот статья'
         elif(((vp.find("найти")!=-1) or (vp.find("найди")!=-1)) and not(vp.find("статью")!=-1)):
             zapros=myfunc.cleanphrase(vp,['найти','найди','про','про то', 'о том'])
             q=myfunc.mysearch(zapros)
