@@ -5,6 +5,8 @@
 https://github.com/Olga-Yakovleva/RHVoice/wiki/Latest-version - прокрутите до раздела SAPI5 Russian
 
 Также нужно установить следующие модули:
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 
 pip install pyqt5<br>
 pip install html2text<br>
