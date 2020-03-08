@@ -5,6 +5,9 @@
 https://github.com/Olga-Yakovleva/RHVoice/wiki/Latest-version - прокрутите до раздела SAPI5 Russian
 
 Также нужно установить следующие модули:
+
+из файла
+
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 
